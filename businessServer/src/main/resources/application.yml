@@ -1,0 +1,6 @@
+mongo:
+  host: dds-bp1d9828cdb47ab41165-pub.mongodb.rds.aliyuncs.com
+  port: 3717
+
+redis:
+  host: 127.0.0.1
