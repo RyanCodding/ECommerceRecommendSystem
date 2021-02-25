@@ -201,6 +201,7 @@ recount 表示RK 中与商品q 相似的、且本身评分较低（<3）的商�
 而后，将u 最近的K 个评分中与商品q 相似的、且本身评分较低（<3）的商品个数记为 recount，计算lgmax{recount,1}作为商品 q 的“削弱因子”，意义在于商品q 与u 的最近K 个评分中的n 个低评分(<3)商品相似，则商品q 的优先级被削减lgmax{incount,1}。如果商品 q 与 u 的最近 K 个评分中相似的低评分商品越多，也就是说n 越大，则商品q 更不应该被推荐，所以推荐优先级被减弱的幅度较大；如果商品q 与u 的最近K 个评分中相似的低评分商品越少，也就是n 越小，则推荐优先级被减弱的幅度较小；
 
 最后，将增强因子增加到上述的预测评分中，并减去削弱因子，得到最终的q 商品对于u 的推荐优先级。在计算完每个候选商品q 的 后，将生成一组<商品q 的ID, q 的推荐优先级>的列表updatedList：
+
 <img src="https://latex.codecogs.com/gif.latex?updataList&space;=&space;\bigcup&space;\limits_{q\in&space;S}\left\{qID,E_{uq}&space;\right\}" title="updataList = \bigcup \limits_{q\in S}\left\{qID,E_{uq} \right\}" />
 
 而在本次为用户u 实时推荐之前的上一次实时推荐结果Rec 也是一组<商品m,m 的推荐优先级>的列表，其大小也为K：
