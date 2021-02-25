@@ -2,7 +2,7 @@
 ## 第1章 项目体系架构设计
 ### 1.1 项目系统架构
 项目以推荐系统建设领域知名的经过修改过的中文亚马逊电商数据集作为依托，以某电商网站真实业务数据架构为基础，构建了符合教学体系的一体化的电商推荐系统，包含了离线推荐与实时推荐体系，综合利用了协同过滤算法以及基于内容的推荐方法来提供混合推荐。提供了从前端应用、后台服务、算法设计实现、平台部署等多方位的闭环的业务实现。
-![Image text](https://github.com/RyanCodding/ECommerceRecommendSystem/blob/main/image/1614244798.png)
+![1.png](https://github.com/RyanCodding/ECommerceRecommendSystem/blob/main/image/1.png)
 
 **用户可视化**：主要负责实现和用户的交互以及业务数据的展示，主体采用AngularJS2进行实现，部署在Apache服务上。
 
