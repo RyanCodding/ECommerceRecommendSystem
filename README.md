@@ -29,7 +29,7 @@
 
 **实时推荐服务**：项目采用Spark Streaming作为实时推荐系统，通过接收Kafka中缓存的数据，通过设计的推荐算法实现对实时推荐的数据处理，并将结构合并更新到MongoDB数据库。
 ## 1.2 项目数据流程
-![data.png](https://github.com/RyanCodding/ECommerceRecommendSystem/blob/main/image/data.png)
+![data.png](http://chuantu.xyz/t6/741/1614246497x1700340443.png)
 
 【**系统初始化部分**】
 1. 通过Spark SQL将系统初始化数据加载到MongoDB中。
