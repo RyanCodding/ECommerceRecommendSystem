@@ -133,7 +133,7 @@
 离线计算的ALS 算法，算法最终会为用户、商品分别生成最终的特征矩阵，分别是表示用户特征矩阵的U(m x k)矩阵，每个用户由 k个特征描述；表示物品特征矩阵的V(n x k)矩阵，每个物品也由 k 个特征描述。
 V(n x k)表示物品特征矩阵，每一行是一个 k 维向量，虽然我们并不知道每一个维度的特征意义是什么，但是k 个维度的数学向量表示了该行对应商品的特征。
 所以，每个商品用V(n x k)每一行的 向量表示其特征，于是任意两个商品 p：特征向量为 ，商品q：特征向量为 之间的相似度sim(p,q)可以使用 和 的余弦值来表示：
-![img_16.png](img_16.png)
+<img src="https://latex.codecogs.com/gif.latex?Sim(p,q)&space;=&space;\frac{\sum\limits^{k}_{i=0}(t_{pi}\times&space;t_{qi})}{\sqrt{\sum\limits^{k}_{i=0}k^2_{pi&space;}\times\sum\limits^{k}_{i=0}k^2_{qi&space;}&space;}}" title="Sim(p,q) = \frac{\sum\limits^{k}_{i=0}(t_{pi}\times t_{qi})}{\sqrt{\sum\limits^{k}_{i=0}k^2_{pi }\times\sum\limits^{k}_{i=0}k^2_{qi } }}" />
 
 数据集中任意两个商品间相似度都可以由公式计算得到，商品与商品之间的相似度在一段时间内基本是固定值。最后生成的数据保存到MongoDB的ProductRecs表中。
 ![img_12.png](img_12.png)
@@ -165,8 +165,10 @@ V(n x k)表示物品特征矩阵，每一行是一个 k 维向量，虽然我们
 这些商品将根据用户u 最近的若干评分计算出各自对用户u 的推荐优先级，然后与上次对用户u 的实时推荐结果的进行基于推荐优先级的合并、替换得到更新后的推荐结果。
 具体来说：
 首先，获取用户u 按时间顺序最近的K 个评分，记为RK；获取商品p 的最相似的K 个商品集合，记为S；
-然后，对于每个商品q S ，计算其推荐优先级 ，计算公式如下：
-![img_24.png](img_24.png)
+然后，对于每个商品<img src="https://latex.codecogs.com/gif.latex?q\in&space;S" title="q\in S" /> ，计算其推荐优先级<img src="https://latex.codecogs.com/gif.latex?E_{qu}" title="E_{qu}" />，计算公式如下：
+
+<img src="https://latex.codecogs.com/gif.latex?E_{uq}&space;=&space;\frac{\sum\limits_{r\in&space;RK}sim(q,r)\times&space;R_{r}&space;}{sim\_sum}&plus;lgmax\left\{incount,1&space;\right\}-lgmax\left\{recount,1&space;\right\}" title="E_{uq} = \frac{\sum\limits_{r\in RK}sim(q,r)\times R_{r} }{sim\_sum}+lgmax\left\{incount,1 \right\}-lgmax\left\{recount,1 \right\}" />
+
 其中：
 表示用户u 对商品r 的评分；
 sim(q,r)表示商品q 与商品r 的相似度，设定最小相似度为0.6，当商品q和商品r 相似度低于0.6 的阈值，则视为两者不相关并忽略；
@@ -178,18 +180,18 @@ recount 表示RK 中与商品q 相似的、且本身评分较低（<3）的商�
 
 首先对于每个候选商品q，从u 最近的K 个评分中，找出与q 相似度较高（>=0.6）的u 已评分商品们，对于这些商品们中的每个商品r，将r 与q 的相似度乘以用户u 对r 的评分，将这些乘积计算平均数，作为用户u 对商品q 的评分预测即
 
-![img_23.png](img_23.png)
+<img src="https://latex.codecogs.com/gif.latex?\frac{\sum&space;\limits_{r\in&space;RK&space;}sim(q,r)\times&space;R_{r}}{sim\_sum}" title="\frac{\sum \limits_{r\in RK }sim(q,r)\times R_{r}}{sim\_sum}" />
 
 然后，将u 最近的K 个评分中与商品q 相似的、且本身评分较高（>=3）的商品个数记为 incount，计算lgmax{incount,1}作为商品 q 的“增强因子”，意义在于商品q 与u 的最近K 个评分中的n 个高评分(>=3)商品相似，则商品q 的优先级被增加lgmax{incount,1}。如果商品 q 与 u 的最近 K 个评分中相似的高评分商品越多，也就是说n 越大，则商品q 更应该被推荐，所以推荐优先级被增强的幅度较大；如果商品q 与u 的最近K 个评分中相似的高评分商品越少，也就是n 越小，则推荐优先级被增强的幅度较小；
 
 而后，将u 最近的K 个评分中与商品q 相似的、且本身评分较低（<3）的商品个数记为 recount，计算lgmax{recount,1}作为商品 q 的“削弱因子”，意义在于商品q 与u 的最近K 个评分中的n 个低评分(<3)商品相似，则商品q 的优先级被削减lgmax{incount,1}。如果商品 q 与 u 的最近 K 个评分中相似的低评分商品越多，也就是说n 越大，则商品q 更不应该被推荐，所以推荐优先级被减弱的幅度较大；如果商品q 与u 的最近K 个评分中相似的低评分商品越少，也就是n 越小，则推荐优先级被减弱的幅度较小；
 
 最后，将增强因子增加到上述的预测评分中，并减去削弱因子，得到最终的q 商品对于u 的推荐优先级。在计算完每个候选商品q 的 后，将生成一组<商品q 的ID, q 的推荐优先级>的列表updatedList：
-![img_26.png](img_26.png)
+<img src="https://latex.codecogs.com/gif.latex?updataList&space;=&space;\bigcup&space;\limits_{q\in&space;S}\left\{qID,E_{uq}&space;\right\}" title="updataList = \bigcup \limits_{q\in S}\left\{qID,E_{uq} \right\}" />
 
 而在本次为用户u 实时推荐之前的上一次实时推荐结果Rec 也是一组<商品m,m 的推荐优先级>的列表，其大小也为K：
 
-![img_27.png](img_27.png)
+<img src="https://latex.codecogs.com/gif.latex?Rec=&space;\bigcup&space;\limits_{m\in&space;Rec}\left\{mID,E_{um}&space;\right\}&space;,len(Rec)=K" title="Rec= \bigcup \limits_{m\in Rec}\left\{mID,E_{um} \right\} ,len(Rec)=K" />
 
 接下来，将updated_S 与本次为u 实时推荐之前的上一次实时推荐结果Rec进行基于合并、替换形成新的推荐结果NewRec：
 
