@@ -133,6 +133,7 @@
 离线计算的ALS 算法，算法最终会为用户、商品分别生成最终的特征矩阵，分别是表示用户特征矩阵的U(m x k)矩阵，每个用户由 k个特征描述；表示物品特征矩阵的V(n x k)矩阵，每个物品也由 k 个特征描述。
 V(n x k)表示物品特征矩阵，每一行是一个 k 维向量，虽然我们并不知道每一个维度的特征意义是什么，但是k 个维度的数学向量表示了该行对应商品的特征。
 所以，每个商品用V(n x k)每一行的 向量表示其特征，于是任意两个商品 p：特征向量为 ，商品q：特征向量为 之间的相似度sim(p,q)可以使用 和 的余弦值来表示：
+
 <img src="https://latex.codecogs.com/gif.latex?Sim(p,q)&space;=&space;\frac{\sum\limits^{k}_{i=0}(t_{pi}\times&space;t_{qi})}{\sqrt{\sum\limits^{k}_{i=0}k^2_{pi&space;}\times\sum\limits^{k}_{i=0}k^2_{qi&space;}&space;}}" title="Sim(p,q) = \frac{\sum\limits^{k}_{i=0}(t_{pi}\times t_{qi})}{\sqrt{\sum\limits^{k}_{i=0}k^2_{pi }\times\sum\limits^{k}_{i=0}k^2_{qi } }}" />
 
 数据集中任意两个商品间相似度都可以由公式计算得到，商品与商品之间的相似度在一段时间内基本是固定值。最后生成的数据保存到MongoDB的ProductRecs表中。
