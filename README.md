@@ -145,6 +145,7 @@ V(n x k)表示物品特征矩阵，每一行是一个 k 维向量，虽然我们
 ![img_18.png](img_18.png)
 ### 3.2.3 模型评估和参数选取
 在上述模型训练的过程中，我们直接给定了隐语义模型的rank,iterations,lambda三个参数。对于我们的模型，这并不一定是最优的参数选取，所以我们需要对模型进行评估。通常的做法是计算均方根误差（RMSE），考察预测评分与实际评分之间的误差。
+
 <img src="https://latex.codecogs.com/gif.latex?RMSE&space;=&space;\sqrt{\frac{1}{n}\sum_{n}^{t=1}(observed_{t}-predicted_{t})^2}" title="RMSE = \sqrt{\frac{1}{n}\sum_{n}^{t=1}(observed_{t}-predicted_{t})^2}" />
 
 有了RMSE，我们可以就可以通过多次调整参数值，来选取RMSE最小的一组作为我们模型的优化选择。
