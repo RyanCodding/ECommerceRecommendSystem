@@ -3,7 +3,7 @@
 ### 1.1 项目系统架构
 项目以推荐系统建设领域知名的经过修改过的中文亚马逊电商数据集作为依托，以某电商网站真实业务数据架构为基础，构建了符合教学体系的一体化的电商推荐系统，包含了离线推荐与实时推荐体系，综合利用了协同过滤算法以及基于内容的推荐方法来提供混合推荐。提供了从前端应用、后台服务、算法设计实现、平台部署等多方位的闭环的业务实现。
 
-![flow.png](https://github.com/RyanCodding/ECommerceRecommendSystem/blob/main/image/flow.png)
+![flow.png](http://chuantu.xyz/t6/741/1614246430x1033348286.png)
 
 **用户可视化**：主要负责实现和用户的交互以及业务数据的展示，主体采用AngularJS2进行实现，部署在Apache服务上。
 
@@ -29,7 +29,7 @@
 
 **实时推荐服务**：项目采用Spark Streaming作为实时推荐系统，通过接收Kafka中缓存的数据，通过设计的推荐算法实现对实时推荐的数据处理，并将结构合并更新到MongoDB数据库。
 ## 1.2 项目数据流程
-![data.png](https://github.com/RyanCodding/ECommerceRecommendSystem/blob/main/image/data.png)
+![data.png](http://chuantu.xyz/t6/741/1614246497x1700340443.png)
 
 【**系统初始化部分**】
 1. 通过Spark SQL将系统初始化数据加载到MongoDB中。
@@ -140,7 +140,8 @@
 3. 将预测结果通过预测分值进行排序。
 4. 返回分值最大的 K 个商品，作为当前用户的推荐列表。
    最后生成的数据结构如下：将数据保存到 MongoDB 的 UserRecs 表中
-  ![img_1.png](img_1.png)
+   
+   ![sim.png](http://chuantu.xyz/t6/741/1614246850x1033348286.png)
 
 ### 3.2.2 商品相似度矩阵
 通过ALS计算商品相似度矩阵，该矩阵用于查询当前商品的相似商品并为实时推荐系统服务。
@@ -151,12 +152,9 @@ V(n x k)表示物品特征矩阵，每一行是一个 k 维向量，虽然我们
 <img src="https://latex.codecogs.com/gif.latex?Sim(p,q)&space;=&space;\frac{\sum\limits^{k}_{i=0}(t_{pi}\times&space;t_{qi})}{\sqrt{\sum\limits^{k}_{i=0}k^2_{pi&space;}\times\sum\limits^{k}_{i=0}k^2_{qi&space;}&space;}}" title="Sim(p,q) = \frac{\sum\limits^{k}_{i=0}(t_{pi}\times t_{qi})}{\sqrt{\sum\limits^{k}_{i=0}k^2_{pi }\times\sum\limits^{k}_{i=0}k^2_{qi } }}" />
 
 数据集中任意两个商品间相似度都可以由公式计算得到，商品与商品之间的相似度在一段时间内基本是固定值。最后生成的数据保存到MongoDB的ProductRecs表中。
-![img_12.png](img_12.png)
-### 3.2.3 模型评估和参数选取
-在上述模型训练的过程中，我们直接给定了隐语义模型的rank,iterations,lambda三个参数。对于我们的模型，这并不一定是最优的参数选取，所以我们需要对模型进行评估。通常的做法是计算均方根误差（RMSE），考察预测评分与实际评分之间的误差。
-![img_14.png](img_14.png)
-数据集中任意两个商品间相似度都可以由公式计算得到，商品与商品之间的相似度在一段时间内基本是固定值。最后生成的数据保存到MongoDB的ProductRecs表中。
-![img_18.png](img_18.png)
+
+![sim.png](http://chuantu.xyz/t6/741/1614246601x1700340443.png)
+
 ### 3.2.3 模型评估和参数选取
 在上述模型训练的过程中，我们直接给定了隐语义模型的rank,iterations,lambda三个参数。对于我们的模型，这并不一定是最优的参数选取，所以我们需要对模型进行评估。通常的做法是计算均方根误差（RMSE），考察预测评分与实际评分之间的误差。
 
