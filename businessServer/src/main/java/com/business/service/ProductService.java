@@ -4,18 +4,15 @@ import com.business.model.domain.Product;
 import com.business.model.recom.Recommendation;
 import com.business.utils.Constant;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
-
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
-
 import com.mongodb.util.JSON;
 import org.bson.Document;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mongodb.MongoClient;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +20,10 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
+    @Resource
     private MongoClient mongoClient;
 
-    @Autowired
+    @Resource
     private ObjectMapper objectMapper;
 
     private MongoCollection<Document> productCollection;
@@ -84,7 +81,6 @@ public class ProductService {
     }
 
     public List<Product> findByProductName(String name) {
-//        FindIterable<Document> documents = getProductCollection().find(new Document("name", name));
         FindIterable<Document> documents = getProductCollection().find(Filters.regex("name", name));
         List<Product> products = new ArrayList<>();
         for (Document document: documents) {

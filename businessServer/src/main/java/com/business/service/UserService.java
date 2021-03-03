@@ -8,32 +8,31 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
-
 import com.mongodb.util.JSON;
 import org.bson.Document;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 
 @Service
 public class UserService {
 
-    @Autowired
+
+    @Resource
     private MongoClient mongoClient;
-    @Autowired
+
+    @Resource
     private ObjectMapper objectMapper;
 
     private MongoCollection<Document> userCollection;
 
     private MongoCollection<Document> getUserCollection(){
         if(null == userCollection)
-            userCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_USER_COLLECTION);
+            userCollection =  mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_USER_COLLECTION);
         return userCollection;
     }
 

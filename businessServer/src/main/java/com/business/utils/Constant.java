@@ -26,8 +26,6 @@ public class Constant {
 
     public static String MONGODB_CONTENTBASED_COLLECTION = "ContentBasedProductRecs";
 
-    //************** FOR PRODUCT RATING ******************
-
     public static String PRODUCT_RATING_PREFIX = "PRODUCT_RATING_PREFIX";
 
     public static int REDIS_PRODUCT_RATING_QUEUE_SIZE = 40;

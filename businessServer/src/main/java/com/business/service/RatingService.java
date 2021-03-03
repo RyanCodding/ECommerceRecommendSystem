@@ -11,7 +11,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.util.JSON;
 import org.bson.Document;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mongodb.MongoClient;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
