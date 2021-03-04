@@ -1,0 +1,395 @@
+.navbar-header{
+    float:left;
+    margin-right:-15px;
+    margin-left:-15px
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none
+}
+
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: underline
+}
+
+a:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+
+img {
+    vertical-align: middle
+}
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit
+}
+
+.h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, .h4 .small, .h4 small, .h5 .small, .h5 small, .h6 .small, .h6 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small, h4 .small, h4 small, h5 .small, h5 small, h6 .small, h6 small {
+    font-weight: 400;
+    line-height: 1;
+    color: #777
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    padding-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 10px
+}
+
+.h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small {
+    font-size: 65%
+}
+
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.h4 .small, .h4 small, .h5 .small, .h5 small, .h6 .small, .h6 small, h4 .small, h4 small, h5 .small, h5 small, h6 .small, h6 small {
+    font-size: 75%
+}
+
+.h1, h1 {
+    font-size: 36px
+}
+
+.h2, h2 {
+    font-size: 30px
+}
+
+.h3, h3 {
+    font-size: 24px
+}
+
+.h4, h4 {
+    font-size: 18px
+}
+
+.h5, h5 {
+    font-size: 14px
+}
+
+
+a.bg-success:focus, a.bg-success:hover {
+    background-color: #c1e2b3
+}
+
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px
+}
+
+ol ol, ol ul, ul ol, ul ul {
+    margin-bottom: 0
+}
+
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+
+.container-fluid {
+    margin-top: -2%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+.row {
+    overflow:auto;
+    margin-right: -15px;
+    margin-left: -15px
+}
+
+ .col-md-8 {
+    position: relative;
+    margin-top: 1%;
+    float: left;
+    width: 66.66666667%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px
+}
+
+.navbar-brand{float:left;height:50px;padding:15px 15px;font-size:18px;line-height:20px;margin-left:-15px}
+
+.form-control {
+    display: block;
+    margin-top: 2%;
+    margin-left: 36%;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.btn {
+    float: right;
+    margin-top: -33px;
+    margin-right: 16%;
+
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+    color: #333;
+    text-decoration: none
+}
+
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc
+}
+
+.btn-default.focus, .btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c
+}
+
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad
+}
+
+.btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad
+}
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open > .dropdown-toggle.btn-default.focus, .open > .dropdown-toggle.btn-default:focus, .open > .dropdown-toggle.btn-default:hover {
+    color: #333;
+    background-color: #d4d4d4;
+    border-color: #8c8c8c
+}
+
+.btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default {
+    background-image: none
+}
+
+.btn-default.disabled.focus, .btn-default.disabled:focus, .btn-default.disabled:hover, .btn-default[disabled].focus, .btn-default[disabled]:focus, .btn-default[disabled]:hover, fieldset[disabled] .btn-default.focus, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:hover {
+    background-color: #fff;
+    border-color: #ccc
+}
+
+.btn .label {
+    position: relative;
+    top: -1px
+}
+
+
+/* 下拉按钮样式 */
+.dropbtn {
+    background-color: #8d9193;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* 容器 <div> - 需要定位下拉内容 */
+.dropdown {
+    float: left;
+    position: relative;
+    display: inline-block;
+    margin-top: 11px;
+}
+
+.dropdown-content {
+    position: absolute;
+    margin-top: 13px;
+    margin-left: 12%;
+
+    display: block;
+    width: 20%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+
+.drop_btn {
+    height: 30px;
+    width: 60px;
+    margin-top: 8px;
+    background-color: #d4d7d4;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.drop_down {
+    float: right;
+    margin-top: -45px;
+    margin-right: -36%;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown_content a:hover {background-color: #f1f1f1}
+
+.drop_down:hover .dropdown_content {
+    display: block;
+}
+
+.drop_down:hover .drop_btn {
+    background-color: #3e8e41;
+}
+.col-md-2{
+    position:relative;min-height:1px;padding-right:15px;padding-left:15px;
+    float:left;
+    width:16.66666667%
+}
+.col-lg-2{
+    width:16.66666667%;
+    float:left;
+    position:relative;min-height:1px;padding-right:15px;padding-left:15px
+}
+
+
+body {
+    background: #f5f5f5;
+}
+body,div,p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.goodsContainer {
+    width: 290px;
+    margin: 10px 0px 0px 10px;
+    background: #fff;
+    float: left;
+}
+
+.goodsInfo {
+    width:270px;
+    paddingLeft:20px;
+    cursor:pointer;
+    textDecoration:none
+}
+
+.goodsImg {
+    width: 200px;
+    height: 150px;
+    margin: 20px 0px 0px 25px;
+}
+
+.goodsImg:hover {
+    position:relative;
+    top:-7px
+}
+
+.goodsTit {
+    fontSize: 14px;
+    color: #333333;
+    margin: 0px 20px 10px;
+    fontWeight: bold;
+    textAlign: left;
+    lineHeight: 20px;
+    height: 20px;
+    whiteSpace: nowrap;
+    textOverflow: ellipsis;
+    overflow: hidden;
+    display:block;
+}
+
+.goodsDesc {
+    margin: 0px 0px 10px 20px;
+    fontSize: 14px;
+    color: #e01222;
+    display:block;
+    overflow: hidden;
+}
+.goodsPrice {
+    paddingLeft:20px;
+    paddingTop:13px;
+    borderTop: 1px solid #f3f3f3
+}
+
+.leftCon {
+    float: left
+}
+
+
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <title>电商推荐系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../assets/css/login.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+    <script type="text/javascript" src="../js/jquery-1.12.3.min.js" ></script>
+</head>
+
+<body>
+<div class="container-fluid content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-6 col-lg-offset-3">
+                <h3 style="margin-bottom: 40px">用户注册</h3>
+                <form>
+                    <div class="form-group">
+                        <label>电子邮箱</label>
+                        <input class="form-control" id="email" name="email" placeholder="Email" required type="email">
+                    </div>
+                    <div class="form-group">
+                        <label>登录密码</label>
+                        <input class="form-control" id="password" name="password" placeholder="登录密码" required type="password">
+                    </div>
+
+                    <button class="btn btn-default" type="button" onclick="register()">注册
+                    </button>
+
+                    <div class="alert alert-danger" hidden role="alert">
+                        <strong>失败</strong>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    function register(){
+        var name = $("#email").val();//
+        var pwd = $("#password").val();
+        if (name == "") {
+            return "用户名不能为空";
+        }
+        if (pwd == "") {
+            return "密码不能为空";
+        } else {
+            $.ajax({
+                type: "post",       //请求类型
+                url: "http://localhost:8090/rest/users/register",	//请求地址
+                dataType: "json",	//预期返回的参数类型
+                async: true,			//true代表的是异步请求，false代表的是同步请求，若为同步请求则会锁住浏览器
+                data: {username: name, password: pwd},    //传入后端Controller的参数
+                success: function (data) {
+                    console.log(data)
+                    /*var password = data.password;//提取出来密码
+                    if (pwd != password) {
+                        document.getElementById("tip").innerText = "账号或密码输入错误";
+                    } else {
+                        window.location.href = "home.aspx";
+                    }*/
+                }
+            });
+        }
+    }
+</script>
+</html>

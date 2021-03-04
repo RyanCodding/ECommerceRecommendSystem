@@ -1,0 +1,30 @@
+.img-thumbnail{
+    display:inline-block;max-width:100%;
+    height:auto;padding:4px;line-height:1.42857143;
+    background-color:#fff;border:1px solid #ddd;
+    border-radius:4px;transition:all .2s ease-in-out;
+}
+
+.detail{
+    position: absolute;
+    margin-left: -1px;
+    bottom: 28px;
+    width: 154px;
+    height: 173px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+}
+
+.main{
+    margin-bottom: 48px!important;
+    margin-top: 48px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 48px 0;
+}
+
+.row {
+    overflow:auto;
+    margin-right: -15px;
+    margin-left: -15px
+}

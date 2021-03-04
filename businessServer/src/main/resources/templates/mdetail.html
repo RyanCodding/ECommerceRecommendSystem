@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="../assets/css/detail.css">
+</head>
+<body>
+<div class="detail">
+
+    <div class="main row">
+        <div class="col-md-5">
+            <img src="{{ product.imageUrl }}" class="img-thumbnail">
+        </div>
+        <div class="col-md-7">
+            <h1 class="title">{{ product.name }}</h1>
+
+            <app-star *ngIf="product.score" ></app-star>
+
+            <div class="row"></div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 class="small-title">平均评分</h4>
+                    <p>{{ product.score.toFixed(2) }} 颗星</p>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h4 class="small-title">商品类别</h4>
+                    <p>{{ product.categories }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <h3><span class="glyphicon glyphicon-bullhorn" aria-hidden="true" style="font-size: 20px"></span> 大家的标签</h3>
+    <div class="grid grid-pad">
+        <div class="row">
+            <div class="col-md-2"  style="margin-bottom: 10px">
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default">{{ tag }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>相似推荐</h3>
+    <p class="descri">电商推荐系统猜这些商品和 {{ product.name }} 相似, 推荐依据：基于物品的协同过滤</p>
+    <div class="grid grid-pad">
+        <div class="row">
+            <div class="col-lg-2 col-md-2"><app-thumbnail [product]="sameProduct"></app-thumbnail></div>
+        </div>
+    </div>
+
+    <h3>相似推荐</h3>
+    <p class="descri">电商推荐系统猜这些商品和 {{ product.name }} 相似, 推荐依据：基于内容相似度</p>
+    <div class="grid grid-pad">
+        <div class="row">
+            <div class="col-lg-2 col-md-2" ><app-thumbnail [product]="product"></app-thumbnail></div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
