@@ -16,7 +16,6 @@
         <spring-boot-dependencies.version>2.3.4.RELEASE</spring-boot-dependencies.version>
         <spring.data.jpa.version>1.11.0.RELEASE</spring.data.jpa.version>
         <jackson.version>2.11.2</jackson.version>
-
     </properties>
 
     <dependencies>
