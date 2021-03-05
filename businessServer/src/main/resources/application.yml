@@ -2,10 +2,11 @@ spring:
   application:
     name: view
   thymeleaf:
-    mode: HTML
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    content-type: text/html
     prefix: classpath:/templates/
     cache: false
-
 
   data:
     mongodb:
