@@ -53,8 +53,6 @@ public class ShiroConfiguration {
 	/** 
 	   * 开启shiro aop注解支持.
 	   *   使用代理方式;所以需要开启代码支持;
-     * @param securityManager
-     * @return
      */
     @Bean
 	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
