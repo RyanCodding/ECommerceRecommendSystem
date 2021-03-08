@@ -137,4 +137,5 @@ public class ProductRestApi {
         List<Recommendation> recommendations = recommenderService.getStreamRecommendations(new UserRecommendationRequest(user.getUserId(), num));
         return Result.success( productService.getRecommendProducts(recommendations));
     }
+
 }
