@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * 需要跨域支持
  */
+
 @Configuration
 public class CORSConfiguration extends WebMvcConfigurerAdapter{
 	@Override
