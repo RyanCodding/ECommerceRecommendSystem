@@ -132,10 +132,8 @@ public class ProductRestApi {
 
     // 实时推荐
     @GetMapping(value = "/stream")
-    public Result getStreamProducts(@RequestParam("username") String username,@RequestParam("num") int num) {
-        User user = userService.findByUsername(username);
-        List<Recommendation> recommendations = recommenderService.getStreamRecommendations(new UserRecommendationRequest(user.getUserId(), num));
+    public Result getStreamProducts(@RequestParam("userId") int userId,@RequestParam("num") int num) {
+        List<Recommendation> recommendations = recommenderService.getStreamRecommendations(new UserRecommendationRequest(userId, num));
         return Result.success( productService.getRecommendProducts(recommendations));
     }
-
 }
