@@ -70,12 +70,12 @@ public class ProductRestApi {
 
     /**
      * 基于内容的推荐
-     * @param id
+     * @param pid
      * @return
      */
-    @GetMapping(value = "/contentbased/{id}")
-    public Result getContentBasedProducts(@PathVariable("id") int id) {
-        List<Recommendation> recommendations = recommenderService.getContentBasedRecommendations(new ContentBasedRecommendationRequest(id));
+    @GetMapping(value = "/contentbased/{pid}")
+    public Result getContentBasedProducts(@PathVariable("pid") int pid) {
+        List<Recommendation> recommendations = recommenderService.getContentBasedRecommendations(pid);
         return Result.success(productService.getRecommendProducts(recommendations));
     }
 
