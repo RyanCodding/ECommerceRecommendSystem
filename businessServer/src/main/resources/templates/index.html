@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header::html"></head>
+	<script>
+		$(function(){
+			var data4vue = {
+				uri : "/rest/product/offline",
+				user:{
+					userId:"",
+					name:""
+				},
+				param:{
+					userId: $("#userDiv").attr("uid"),
+					num:6
+				},
+				other:{
+					num:6
+				},
+				products: null,
+				hot:null,
+				most:null,
+				c: {
+					name: "hello"
+				},
+				p:{
+					imageUrl:"",
+					name:"",
+					score:"",
+					tags:""
+				}
+
+			};
+			var vm = new Vue({
+				el:'#workingArea',
+				data:data4vue,
+				mounted : function() {
+					this.init();
+				},
+				methods:{
+					init:function(){
+						var userDiv = $("#userDiv");
+						if(userDiv){
+							//从session中加载用户信息
+							this.user.name = $("#userDiv").attr("name");
+							this.user.userId = $("#userDiv").attr("uid");
+						}
+
+						//线下推荐
+						axios.get(this.uri,{params: this.param}).then(function(response){
+							var res = response.data;
+							vm.products = res.data;
+						})
+
+						//热门推荐
+						url = "/rest/product/hot"
+						axios.get(url,{params: this.other}).then(function(response){
+							var res = response.data;
+							vm.hot = res.data;
+						})
+
+						//评分最多
+						url = "/rest/product/rate"
+						axios.get(url,{params: this.other}).then(function(response){
+							var res = response.data;
+							vm.most = res.data;
+						})
+					}
+				}
+			});
+		});
+	</script>
+<body>
+	<div id="workingArea">
+		<div th:replace="include/top::html"></div>
+		<div th:replace="include/search::html"></div>
+		<div th:replace="include/home/homePage::html"></div>
+
+	</div>
+</body>
+</html>

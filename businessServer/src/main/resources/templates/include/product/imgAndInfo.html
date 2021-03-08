@@ -1,0 +1,31 @@
+<div th:fragment="html">
+	<div class="imgAndInfo">
+		<div class="leftProductImgDiv">
+
+			<img v-if="product!=null && product.imageUrl!=null"
+				:src="product.imageUrl"
+				class="bigImg" >
+
+		</div>
+		<div class="rightDetailDiv">
+			<div class="productTitle">名称:{{product.name}}</div>
+			<div class="productSubTitle">类别:{{product.categories}}</div>
+			<div class="productPrice">
+
+
+				<div class="productPriceDiv">
+
+					<div class="productSaleAndReviewNumberDiv">
+						<div>
+							大家的标签: <span class="redColor boldWord"> {{product.tags}}</span>
+						</div>
+						<div>
+							平均评分: <span class="redColor boldWord"> {{ Math.round(product.score*100)/100 }}颗星</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

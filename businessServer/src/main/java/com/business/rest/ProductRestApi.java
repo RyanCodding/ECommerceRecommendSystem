@@ -59,12 +59,12 @@ public class ProductRestApi {
 
     /**
      * 基于物品的协同过滤
-     * @param id
+     * @param pid
      * @return
      */
-    @GetMapping(value = "/itemcf/{id}")
-    public Result getItemCFProducts(@PathVariable("id") int id) {
-        List<Recommendation> recommendations = recommenderService.getItemCFRecommendations(new ItemCFRecommendationRequest(id));
+    @GetMapping(value = "/itemcf/{pid}")
+    public Result getItemCFProducts(@PathVariable("pid") int pid) {
+        List<Recommendation> recommendations = recommenderService.getItemCFRecommendations(pid);
         return Result.success(productService.getRecommendProducts(recommendations));
     }
 
@@ -81,12 +81,12 @@ public class ProductRestApi {
 
     /**
      * 获取单个商品的信息
-     * @param id
+     * @param pid
      * @return
      */
-    @GetMapping(value = "/info/{id}")
-    public Result getProductInfo(@PathVariable("id") int id) {
-        return Result.success(productService.findByProductId(id));
+    @GetMapping(value = "/info/{pid}")
+    public Result getProductInfo(@PathVariable("pid") int pid) {
+        return Result.success(productService.findByProductId(pid));
     }
 
     /**
@@ -106,23 +106,23 @@ public class ProductRestApi {
     }
 
     @GetMapping(value = "/rate/{id}")
-    public Result rateToProduct(@PathVariable("id") int id, @RequestParam("score") Double score, @RequestParam("username") String username) {
-        User user = userService.findByUsername(username);
-        ProductRatingRequest request = new ProductRatingRequest(user.getUserId(), id, score);
+    public Result rateToProduct(@PathVariable("id") int id, @RequestParam("score") Double score, @RequestParam("userId") int userId) {
+
+        ProductRatingRequest request = new ProductRatingRequest(userId, id, score);
         boolean complete = ratingService.productRating(request);
         //埋点日志
         if(complete) {
             System.out.print("=========埋点=========");
-            log.info(Constant.PRODUCT_RATING_PREFIX + ":" + user.getUserId() +"|"+ id +"|"+ request.getScore() +"|"+ System.currentTimeMillis()/1000);
+            log.info(Constant.PRODUCT_RATING_PREFIX + ":" + userId +"|"+ id +"|"+ request.getScore() +"|"+ System.currentTimeMillis()/1000);
         }
         return Result.success("已完成评分");
     }
 
     // 离线推荐
     @GetMapping(value = "/offline")
-    public Result getOfflineProducts(@RequestParam("username") String username,@RequestParam("num") int num) {
-        User user = userService.findByUsername(username);
-        List<Recommendation> recommendations = recommenderService.getCollaborativeFilteringRecommendations(new UserRecommendationRequest(user.getUserId(), num));
+    public Result getOfflineProducts(@RequestParam("userId") int userId, @RequestParam("num") int num) {
+
+        List<Recommendation> recommendations = recommenderService.getCollaborativeFilteringRecommendations(new UserRecommendationRequest(userId, num));
         List<Product> productList = new ArrayList<>();
         if(recommendations != null){
             productList = productService.getRecommendProducts(recommendations);

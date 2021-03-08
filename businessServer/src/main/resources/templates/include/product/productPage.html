@@ -1,0 +1,9 @@
+<div th:fragment="html">
+    <title></title>
+
+    <div class="productPageDiv">
+        <div th:replace="include/product/imgAndInfo::html" ></div>
+        <div th:replace="include/product/productReview::html" ></div>
+        <div th:replace="include/product/productDetail::html" ></div>
+    </div>
+</div>

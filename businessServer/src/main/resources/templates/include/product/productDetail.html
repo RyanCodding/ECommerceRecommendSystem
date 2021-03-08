@@ -1,0 +1,39 @@
+<div th:fragment="html">
+	<div class="productDetailDiv" v-show="showDetail">
+		<div class="productDetailTopPart">
+			<div class="productReviewOrDetailDiv productDetailDivInDetail">
+				基于物品的协同过滤</div>
+			<div class="productReviewOrDetailDiv productReviewDivInDetail"
+				@click="toggle2Review">
+				基于内容相似度
+			</div>
+		</div>
+
+		<div class="productParamterPart">
+				<div class="category-list" style="padding-top:15px;">
+					<div class="category-list-row">
+
+						<div class="category-list-eachCategory"
+							 v-for="p ,pindex in item" v-if="pindex<6">
+							<div class="product-of-categoty-list">
+								<a>
+									<img  width="150px" height= "150px" margin="20px 0px 0px 25px"
+										  :src=p.imageUrl />
+								</a>
+								<div class="productItemDesc">
+									<span class="goodsInfo">{{p.name}} </span>
+								</div>
+								<div
+										style="width: 90%; margin: 0 auto; margin-top: 10px; font-size: 18px; color: #FF003A;">
+									<span> {{Math.round(p.score*100)/100}}|{{p.tags}}  </span>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+

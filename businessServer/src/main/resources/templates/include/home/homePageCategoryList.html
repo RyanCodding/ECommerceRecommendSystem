@@ -1,0 +1,76 @@
+<div th:fragment="html" >
+	<div class="homepage-category-list" style="margin-top:50px;">
+		<div class="category-list-content" style="padding-top:25px;">
+			<div class="category-list-content-row">
+                <h3>线下推荐</h3>
+				<div class="category-list-eachCategory"
+					v-for="p ,pindex in products" v-if="pindex<6">
+					<div class="product-of-categoty-list">
+						<a :href="'detail?pid='+p.productId" target="_blank" >
+							<img  width="200px" height= "150px" margin="20px 0px 0px 25px"
+							:src=p.imageUrl />
+						</a>
+						<div class="productItemDesc">
+							<span class="goodsInfo">{{p.name}} </span>
+						</div>
+						<div
+							style="width: 90%; margin: 0 auto; margin-top: 10px; font-size: 18px; color: #FF003A;">
+							<span> {{Math.round(p.score*100)/100}}|{{p.tags}}  </span>
+						</div>
+					</div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="homepage-category-list" style="margin-top:15%;">
+		<div class="category-list-content" style="padding-top:25px;">
+			<div class="category-list-content-row">
+				<h3>热门推荐</h3>
+				<div class="category-list-eachCategory"
+					 v-for="p ,pindex in hot" v-if="pindex<6">
+					<div class="product-of-categoty-list">
+						<a :href="'detail?pid='+p.productId" target="_blank" >
+							<img  width="200px" height= "150px" margin="20px 0px 0px 25px"
+								  :src=p.imageUrl />
+						</a>
+						<div class="productItemDesc">
+							<span class="goodsInfo">{{p.name}} </span>
+						</div>
+						<div
+								style="width: 90%; margin: 0 auto; margin-top: 10px; font-size: 18px; color: #FF003A;">
+							<span> {{Math.round(p.score*100)/100}}|{{p.tags}}  </span>
+						</div>
+					</div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="homepage-category-list" style="margin-top:18%;">
+		<div class="category-list-content" style="padding-top:25px;">
+			<div class="category-list-content-row">
+				<h3>评分最多</h3>
+				<div class="category-list-eachCategory"
+					 v-for="p ,pindex in most" v-if="pindex<6">
+					<div class="product-of-categoty-list">
+						<a :href="'detail?pid='+p.productId" target="_blank" >
+							<img  width="200px" height= "150px" margin="20px 0px 0px 25px"
+								  :src=p.imageUrl />
+						</a>
+						<div class="productItemDesc">
+							<span class="goodsInfo">{{p.name}} </span>
+						</div>
+						<div
+								style="width: 90%; margin: 0 auto; margin-top: 10px; font-size: 18px; color: #FF003A;">
+							<span> {{Math.round(p.score*100)/100}}|{{p.tags}}  </span>
+						</div>
+					</div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

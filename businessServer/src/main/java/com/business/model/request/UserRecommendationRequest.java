@@ -1,15 +1,20 @@
 package com.business.model.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class UserRecommendationRequest {
+
     private int userId;
+
+    private String username;
 
     private int sum;
 
+    public UserRecommendationRequest(int userId, int sum) {
+        this.userId = userId;
+        this.sum = sum;
+    }
 }

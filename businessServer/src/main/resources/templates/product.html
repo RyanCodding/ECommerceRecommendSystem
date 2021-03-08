@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header::html" >
+</head>
+<body>
+    <script>
+        $(function(){
+        	
+        	var pid = getUrlParms("pid");
+        	var data4vue = {
+					product: {
+                        imageUrl: "",
+                        categories:"",
+                        score:"",
+                        tags:"",
+						name: "",
+
+					},
+                    item: {
+                        imageUrl: "",
+                        categories:"",
+                        score:"",
+                        tags:"",
+                        name: "",
+
+                    },
+                    content: {
+                        imageUrl: "",
+                        categories:"",
+                        score:"",
+                        tags:"",
+                        name: "",
+
+                    },
+
+					user:{
+						userId:"",
+						name:""
+					},
+                    showDetail:true,
+                    showReview: false,
+
+				};
+				var vm = new Vue({
+					el: '#workingArea',
+					data: data4vue,
+					mounted: function() {
+						this.init();
+					},
+					methods: {
+						init: function() {
+                            var userDiv = $("#userDiv");
+                            if(userDiv){
+                                //从session中加载用户信息
+                                this.user.name = $("#userDiv").attr("name");
+                                this.user.userId = $("#userDiv").attr("uid");
+                            }
+
+                            //获取产品信息
+							uri = "/rest/product/info/"+pid;
+							axios.get(uri).then(function(response){
+								var res = response.data;
+								if(res.code==200){
+									vm.product = res.data;
+								}else if(res.code == 400){
+									alert(res.message);
+								}
+							});
+
+                            url1 = "/rest/product/itemcf/"+pid;
+                            axios.get(url1).then(function(response){
+                                var res = response.data;
+                                if(res.code==200){
+                                    vm.item = res.data;
+                                }else if(res.code == 400){
+                                    alert(res.message);
+                                }
+                            });
+
+                            url2 = "/rest/product/contentbased/"+pid;
+                            axios.get(url2).then(function(response){
+                                var res = response.data;
+                                if(res.code==200){
+                                    vm.content = res.data;
+                                }else if(res.code == 400){
+                                    alert(res.message);
+                                }
+                            });
+						},
+
+                        toggle2Detail: function() {
+                            this.showDetail = true;
+                            this.showReview = false;
+                        },
+                        toggle2Review: function() {
+                            this.showDetail = false;
+                            this.showReview = true;
+                        },
+					}
+				});
+        });
+    </script>
+
+<div id="workingArea">
+    <div th:replace="include/top::html" ></div>
+    <div th:replace="include/search::html" ></div>
+    <div th:replace="include/product/productPage::html" ></div>
+    <!--<div th:replace="include/fore/modal4login::html" ></div>
+    <div th:replace="include/fore/footer::html" ></div>-->
+</div>
+</body>
+</html>

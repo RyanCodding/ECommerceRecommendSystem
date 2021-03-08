@@ -1,0 +1,27 @@
+<div th:fragment="html">
+    <img src="../../../assets/image/catear.jpg" id="catear" class="catear"/>
+
+    <div class="categoryWithCarousel" style="position:relative">
+        <div class="headbar show1">
+            <div class="head ">
+                <span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
+                <span style="margin-left:10px" >商品分类</span>
+            </div>
+
+            <div class="rightMenu">
+                <span><a href=""><img src="../../../assets/image/chaoshi.jpg"/></a></span>
+                <span><a href=""><img src="../../../assets/image/guoji.jpg"/></a></span>
+
+            </div>
+
+        </div>
+
+       <div style="position: relative;margin-left:2%;position:absolute;z-index:1;">
+            <div th:replace="include/home/homePageCategoryList::html" ></div>
+        </div>
+
+    </div>
+</div>
+
+
+

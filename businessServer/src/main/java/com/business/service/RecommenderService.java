@@ -2,7 +2,6 @@ package com.business.service;
 
 import com.business.model.recom.Recommendation;
 import com.business.model.request.ContentBasedRecommendationRequest;
-import com.business.model.request.ItemCFRecommendationRequest;
 import com.business.model.request.UserRecommendationRequest;
 import com.business.utils.Constant;
 import com.mongodb.MongoClient;
@@ -24,41 +23,46 @@ public class RecommenderService {
 
 
     public List<Recommendation> getHotRecommendations(int num) {
-        // 获取热门电影的条目
+        // 获取热门的条目
         MongoCollection<Document> rateMoreMoviesRecentlyCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_RATE_MORE_PRODUCTS_RECENTLY_COLLECTION);
         FindIterable<Document> documents = rateMoreMoviesRecentlyCollection.find().sort(Sorts.descending("yearmonth")).limit(num);
 
         List<Recommendation> recommendations = new ArrayList<>();
-        for (Document document : documents) {
-            recommendations.add(new Recommendation(document.getInteger("productId"), 0D));
+        if(documents != null){
+            for (Document document : documents) {
+                recommendations.add(new Recommendation(document.getInteger("productId"), 0D));
+            }
         }
         return recommendations;
     }
 
     public List<Recommendation> getRateMoreRecommendations(int num) {
 
-        // 获取评分最多电影的条目
+        // 获取评分最多的条目
         MongoCollection<Document> rateMoreProductsCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_RATE_MORE_PRODUCTS_COLLECTION);
         FindIterable<Document> documents = rateMoreProductsCollection.find().sort(Sorts.descending("count")).limit(num);
 
         List<Recommendation> recommendations = new ArrayList<>();
-        for (Document document : documents) {
-            recommendations.add(new Recommendation(document.getInteger("productId"), 0D));
+        if(documents != null){
+            for (Document document : documents) {
+                recommendations.add(new Recommendation(document.getInteger("productId"), 0D));
+            }
         }
         return recommendations;
     }
 
-    public List<Recommendation> getItemCFRecommendations(ItemCFRecommendationRequest request) {
+    public List<Recommendation> getItemCFRecommendations(int pid) {
         MongoCollection<Document> itemCFProductsCollection = mongoClient.getDatabase(Constant.MONGODB_DATABASE).getCollection(Constant.MONGODB_ITEMCF_COLLECTION);
-        Document document = itemCFProductsCollection.find(new Document("productId", request.getId())).first();
+        Document document = itemCFProductsCollection.find(new Document("productId", pid)).first();
 
         List<Recommendation> recommendations = new ArrayList<>();
-        ArrayList<Document> recs = document.get("recs", ArrayList.class);
+        if(document != null){
+            ArrayList<Document> recs = document.get("recs", ArrayList.class);
 
-        for (Document recDoc : recs) {
-            recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            for (Document recDoc : recs) {
+                recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            }
         }
-
         return recommendations;
     }
 
@@ -67,12 +71,13 @@ public class RecommenderService {
         Document document = contentBasedProductsCollection.find(new Document("productId", request.getId())).first();
 
         List<Recommendation> recommendations = new ArrayList<>();
-        ArrayList<Document> recs = document.get("recs", ArrayList.class);
+        if(document != null){
+            ArrayList<Document> recs = document.get("recs", ArrayList.class);
 
-        for (Document recDoc : recs) {
-            recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            for (Document recDoc : recs) {
+                recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            }
         }
-
         return recommendations;
     }
 
@@ -84,12 +89,13 @@ public class RecommenderService {
             return null;
         }
         List<Recommendation> recommendations = new ArrayList<>();
-        ArrayList<Document> recs = document.get("recs", ArrayList.class);
+        if(document != null){
+            ArrayList<Document> recs = document.get("recs", ArrayList.class);
 
-        for (Document recDoc : recs) {
-            recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            for (Document recDoc : recs) {
+                recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            }
         }
-
         return recommendations;
     }
 
@@ -98,12 +104,13 @@ public class RecommenderService {
         Document document = userRecsCollection.find(new Document("userId", request.getUserId())).first();
 
         List<Recommendation> recommendations = new ArrayList<>();
-        ArrayList<Document> recs = document.get("recs", ArrayList.class);
+        if(document != null){
+            ArrayList<Document> recs = document.get("recs", ArrayList.class);
 
-        for (Document recDoc : recs) {
-            recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            for (Document recDoc : recs) {
+                recommendations.add(new Recommendation(recDoc.getInteger("productId"), recDoc.getDouble("score")));
+            }
         }
-
         return recommendations;
     }
 }

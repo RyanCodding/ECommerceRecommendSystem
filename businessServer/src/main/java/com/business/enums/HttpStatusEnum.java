@@ -15,6 +15,8 @@ public enum HttpStatusEnum {
     private int code;
     private String msg;
 
+
+
     HttpStatusEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;

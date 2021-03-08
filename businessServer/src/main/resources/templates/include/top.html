@@ -1,0 +1,26 @@
+<div th:fragment="html">
+	<div id="sessionTestDiv" th:if="${session!=null}">
+		<div id="userTestDiv" th:if="${session.user!=null}">
+			<div id="userDiv" style="display:none;" th:attr="name=${session.user.name},uid=${session.user.userId}">
+				
+			</div>
+		</div>
+	</div>
+	<div id="homeTop" class="home-top">
+		<div class="home-top-middle">
+			<div class="top-content-left">
+				<a href="home">
+					<div style="display: inline;">
+						<span style="color: #C40000; margin: 0px;"
+							class=" glyphicon glyphicon-home"></span> 首页
+					</div>
+				</a> 
+				<a href="login" v-if="!user.userId">请登录</a>
+				<a href="#" v-else>{{user.name}} </a>
+				 <a href="regist" v-if="!user.userId">免费注册</a>
+				<a href="logout" v-else>退出 </a>
+			</div>
+
+		</div>
+	</div>
+</div>

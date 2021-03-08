@@ -1,8 +1,6 @@
 package com.business.service;
 
 import com.business.model.domain.User;
-import com.business.model.request.LoginUserRequest;
-import com.business.model.request.RegisterUserRequest;
 import com.business.utils.Constant;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,6 +11,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.util.JSON;
 import org.bson.Document;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,12 +35,9 @@ public class UserService {
         return userCollection;
     }
 
-    public boolean registerUser(RegisterUserRequest request){
+    public boolean registerUser(User request){
         User user = new User();
-        user.setUsername(request.getUsername());
-        user.setPassword(request.getPassword());
-        user.setFirst(true);
-        user.setTimestamp(System.currentTimeMillis());
+        BeanUtils.copyProperties(request,user);
         try{
             getUserCollection().insertOne(Document.parse(objectMapper.writeValueAsString(user)));
             return true;
@@ -51,15 +47,6 @@ public class UserService {
         }
     }
 
-    public User loginUser(LoginUserRequest request){
-        User user = findByUsername(request.getUsername());
-        if(null == user) {
-            return null;
-        }else if(!user.passwordMatch(request.getPassword())){
-            return null;
-        }
-        return user;
-    }
 
     private User documentToUser(Document document){
         try{
@@ -81,7 +68,7 @@ public class UserService {
     }
 
     public User findByUsername(String username){
-        Document user = getUserCollection().find(new Document("username",username)).first();
+        Document user = getUserCollection().find(new Document("name",username)).first();
         if(null == user || user.isEmpty())
             return null;
         return documentToUser(user);
