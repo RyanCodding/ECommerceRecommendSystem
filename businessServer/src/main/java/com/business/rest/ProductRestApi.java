@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Slf4j
 @RestController
 @RequestMapping("/rest/product")
