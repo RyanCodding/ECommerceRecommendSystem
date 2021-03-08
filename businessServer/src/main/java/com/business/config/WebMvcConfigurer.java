@@ -22,6 +22,5 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter{
 		registry.addInterceptor(getLoginIntercepter()).addPathPatterns("/**");
 
 	}
-	
-	
+
 }
